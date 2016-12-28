@@ -1,0 +1,11 @@
+# Specify agent service action state: started, restarted, stopped etc...
+
+agent_service_action_state: restarted
+
+# The following var is based on CentOS F5 OpenStack Agent service name
+
+f5_openstack_agent_service_name: f5-openstack-agent
+
+# Set remote user
+
+remote_user: <remote_username>  # User ansible will use to issue commands
