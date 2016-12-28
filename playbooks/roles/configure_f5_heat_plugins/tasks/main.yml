@@ -1,0 +1,23 @@
+# version: 2016-12-27
+---
+- name: Ensure symlink is torn down prior to being created
+  file:
+    path: '{{ heat_plugin_install_dest }}'
+    state: absent
+
+- name: Create heat plugin directory in /usr/lib install location, if necessary
+  file:
+    path: '{{ heat_plugin_install_dest }}'
+    state: directory
+
+- name: Create a symlink from the pip install location to /usr/lib/heat
+  file:
+    src: '{{ pip_install_dest }}'
+    dest: '{{ heat_plugin_install_dest }}'
+    state: link
+    force: yes
+
+- name: Restart heat engine service
+  service:
+    name: '{{ heat_engine_service_name }}'
+    state: restarted

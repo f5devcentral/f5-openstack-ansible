@@ -1,0 +1,15 @@
+# Enter remote user
+remote_user: <remote_username>  # User ansible will use to issue commands
+
+# Enter the location for the plugins package
+heat_plugins_pkg_location: <f5_heat_plugins_pkg_location> # Ex: git+https://github.com/F5Networks/f5-openstack-heat-plugins.git@mitaka
+
+# Enter the location for the pip installed heat plugin packaged
+pip_install_dest: <f5_heat_plugin_install_dest> # Ex: /usr/lib/python2.7/site-packages/f5_heat
+
+# Enter the location where the heat engine expects the heat plugins to be
+# Do not use a trailing slash in this directory path!
+heat_plugin_install_dest: <heat_plugin_install_dest> # Ex: /usr/lib/heat
+
+# Enter the name of the heat engine service
+heat_engine_service_name: <heat_engine_service_name> # openstack-heat-engine

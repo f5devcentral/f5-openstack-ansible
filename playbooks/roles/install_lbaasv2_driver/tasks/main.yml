@@ -1,0 +1,35 @@
+# version: 2016-12-20
+---
+- name: Create f5 directory in neutron-lbaas install location, if necessary
+  file:
+    path: '{{ neutron_lbaas_shim_install_dest }}'
+    state: directory
+
+- name: Drop the shim driver into the correct spot for neutron-lbaas
+  get_url:
+    url: '{{ neutron_lbaas_driver_location }}'
+    dest: '{{ neutron_lbaas_shim_install_dest }}'
+
+- name: Drop the shim __init__.py into the correct spot for neutron-lbaas
+  get_url:
+    url: '{{ neutron_lbaas_init_location }}'
+    dest: '{{ neutron_lbaas_shim_install_dest }}'
+
+- name: Install the LBaaSv2 Driver from an rpm package
+  package:
+    name: '{{ driver_pkg_location }}'
+    state: present
+  when: 'not {{ use_pip }}'
+
+- name: Install the LBaaSv2 Driver from an rpm package
+  package:
+    name: '{{ driver_pkg_location }}'
+    state: present
+  when: 'not {{ use_pip }}'
+
+- name: Install the F5 OpenStack LBaaSv2 Driver
+  pip:
+    name: '{{ driver_pkg_location }}'
+    editable: false
+    extra_args: --upgrade
+  when: '{{ use_pip }}'
