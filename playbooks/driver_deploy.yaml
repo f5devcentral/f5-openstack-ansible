@@ -2,7 +2,7 @@
 # version: 2016-12-29
 - hosts: all
   vars_files:
-    - vars/agent_driver_deploy_vars.yaml
+    - vars/driver_deploy_vars.yaml
   become_user: root
   become_method: sudo
   become: true
@@ -10,8 +10,6 @@
   roles:
     - role: install_lbaasv2_driver
     - role: configure_lbaasv2_driver
-    - role: install_lbaasv2_agent
-    - role: configure_lbaasv2_agent
   tasks:
     # Restart all other neutron services after the roles are applied
     - name: Restart neutron-metadata-agent
