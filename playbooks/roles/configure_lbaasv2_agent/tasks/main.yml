@@ -1,4 +1,7 @@
 # version: 2016-12-20
+# The agent configuration file contains many settings to customize your agent.
+# This configures the most common settings. If anything additional is needed,
+# add the setting using the ini_file module.
 ---
 - name: Configure F5 OpenStack LBaaSv2 Agent with AllowedAddressPairs for overcloud
   ini_file:
@@ -6,15 +9,14 @@
     section: DEFAULT
     option: l3_binding_driver
     value: f5_openstack_agent.lbaasv2.drivers.bigip.l3_binding.AllowedAddressPairs
-  when: not {{ undercloud }}
+  when: not {{ f5_global_routed_mode }}
 
-- name: Configure F5 OpenStack LBaaSv2 Agent to turn off Global Routed Mode for undercloud
+- name: Configure F5 OpenStack LBaaSv2 Agent to set Global Routed Mode for undercloud or overcloud deployments
   ini_file:
     dest: '{{ agent_ini_file }}'
     section: DEFAULT
     option: f5_global_routed_mode
-    value: 'False'
-  when: '{{ undercloud }}'
+    value: '{{ f5_global_routed_mode }}'
 
 - name: Configure F5 OpenStack LBaaSv2 Agent set vtep selfip name for undercloud
   ini_file:
@@ -22,15 +24,15 @@
     section: DEFAULT
     option: f5_vtep_selfip_name
     value: selfip.client
-  when: '{{ undercloud }}'
+  when: not {{ f5_global_routed_mode }}
 
 - name: Configure F5 OpenStack LBaaSv2 Agent set advertised tunnel types for undercloud
   ini_file:
     dest: '{{ agent_ini_file }}'
     section: DEFAULT
     option: advertised_tunnel_types
-    value: '{{ tunnel_types }}'
-  when: '{{ undercloud }}'
+    value: '{{ advertised_tunnel_types }}'
+  when: not {{ f5_global_routed_mode }}
 
 - name: Configure F5 OpenStack LBaaSv2 Agent with icontrol_hostname
   ini_file:

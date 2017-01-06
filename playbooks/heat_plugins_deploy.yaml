@@ -1,6 +1,6 @@
 ---
-# version: 2016-12-27
-- hosts: controllers
+# version: 2016-12-29
+- hosts: all
   vars_files:
     - vars/heat_plugins_deploy_vars.yaml
   become_user: root

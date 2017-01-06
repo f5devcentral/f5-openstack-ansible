@@ -1,6 +1,6 @@
 ---
-# version: 2016-12-20
-- hosts: controllers
+# version: 2016-12-29
+- hosts: all
   vars_files:
     - vars/agent_service_action_vars.yaml
   become_user: root
