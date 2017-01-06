@@ -24,7 +24,7 @@
     section: DEFAULT
     option: f5_vtep_selfip_name
     value: selfip.client
-  when: '{{ f5_global_routed_mode }}'
+  when: not {{ f5_global_routed_mode }}
 
 - name: Configure F5 OpenStack LBaaSv2 Agent set advertised tunnel types for undercloud
   ini_file:
@@ -32,7 +32,7 @@
     section: DEFAULT
     option: advertised_tunnel_types
     value: '{{ advertised_tunnel_types }}'
-  when: '{{ f5_global_routed_mode }}'
+  when: not {{ f5_global_routed_mode }}
 
 - name: Configure F5 OpenStack LBaaSv2 Agent with icontrol_hostname
   ini_file:
