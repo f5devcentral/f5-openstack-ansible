@@ -1,0 +1,14 @@
+---
+# version: 2016-12-29
+- hosts: all
+  vars_files:
+    - vars/agent_service_action_vars.yaml
+  become_user: root
+  become_method: sudo
+  become: true
+  remote_user: '{{ remote_user }}'
+  tasks:
+    - name: Restart F5 OpenStack Agent
+      service:
+        name: '{{ f5_openstack_agent_service_name }}'
+        state: '{{ agent_service_action_state }}'

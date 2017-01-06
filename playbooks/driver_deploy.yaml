@@ -1,0 +1,42 @@
+---
+# version: 2016-12-29
+- hosts: all
+  vars_files:
+    - vars/driver_deploy_vars.yaml
+  become_user: root
+  become_method: sudo
+  become: true
+  remote_user: '{{ remote_user }}'
+  roles:
+    - role: install_lbaasv2_driver
+    - role: configure_lbaasv2_driver
+  tasks:
+    # Restart all other neutron services after the roles are applied
+    - name: Restart neutron-metadata-agent
+      service:
+        name: '{{ neutron_metadata_agent_service_name }}'
+        state: restarted
+      when: '{{ restart_all_neutron_services }}'
+
+    - name: Restart neutron-dhcp-agent
+      service:
+        name: '{{ neutron_dhcp_agent_service_name }}'
+        state: restarted
+      when: '{{ restart_all_neutron_services }}'
+
+    - name: Restart neutron-l3-agent
+      service:
+        name: '{{ neutron_l3_agent_service_name }}'
+        state: restarted
+      when: '{{ restart_all_neutron_services }}'
+
+    - name: Restart neutron-openvswitch-agent
+      service:
+        name: '{{ neutron_openvswitch_agent_service_name }}'
+        state: restarted
+      when: '{{ restart_all_neutron_services }}'
+
+    - name: Restart Neutron
+      service:
+        name: '{{ neutron_server_service_name }}'
+        state: restarted

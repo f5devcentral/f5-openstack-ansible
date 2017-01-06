@@ -1,0 +1,62 @@
+# version: 2016-12-20
+# The agent configuration file contains many settings to customize your agent.
+# This configures the most common settings. If anything additional is needed,
+# add the setting using the ini_file module.
+---
+- name: Configure F5 OpenStack LBaaSv2 Agent with AllowedAddressPairs for overcloud
+  ini_file:
+    dest: '{{ agent_ini_file }}'
+    section: DEFAULT
+    option: l3_binding_driver
+    value: f5_openstack_agent.lbaasv2.drivers.bigip.l3_binding.AllowedAddressPairs
+  when: not {{ f5_global_routed_mode }}
+
+- name: Configure F5 OpenStack LBaaSv2 Agent to set Global Routed Mode for undercloud or overcloud deployments
+  ini_file:
+    dest: '{{ agent_ini_file }}'
+    section: DEFAULT
+    option: f5_global_routed_mode
+    value: '{{ f5_global_routed_mode }}'
+
+- name: Configure F5 OpenStack LBaaSv2 Agent set vtep selfip name for undercloud
+  ini_file:
+    dest: '{{ agent_ini_file }}'
+    section: DEFAULT
+    option: f5_vtep_selfip_name
+    value: selfip.client
+  when: '{{ f5_global_routed_mode }}'
+
+- name: Configure F5 OpenStack LBaaSv2 Agent set advertised tunnel types for undercloud
+  ini_file:
+    dest: '{{ agent_ini_file }}'
+    section: DEFAULT
+    option: advertised_tunnel_types
+    value: '{{ advertised_tunnel_types }}'
+  when: '{{ f5_global_routed_mode }}'
+
+- name: Configure F5 OpenStack LBaaSv2 Agent with icontrol_hostname
+  ini_file:
+    dest: '{{ agent_ini_file }}'
+    section: DEFAULT
+    option: icontrol_hostname
+    value: '{{ bigip_netloc }}'
+
+- name: Stop F5 OpenStack Agent in prep for restarting
+  service:
+    name: '{{ agent_service_name }}'
+    state: stopped
+
+- name: Disable F5 OpenStack Agent in prep for restarting
+  service:
+    name: '{{ agent_service_name }}'
+    enabled: no
+
+- name: Enable F5 OpenStack Agent
+  service:
+    name: '{{ agent_service_name }}'
+    enabled: yes
+
+- name: Start F5 OpenStack Agent
+  service:
+    name: '{{ agent_service_name }}'
+    state: started

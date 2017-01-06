@@ -1,0 +1,28 @@
+# If using pip to install the agent or driver packages, set variable 'use_pip: true'
+# If using deb or rpm packages, set 'use_pip: false'
+use_pip: True
+
+
+# Provide the locations of the agent packages to install
+#   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-agent.git@v9.1.0
+#         Or you can provide the PyPi package name and version, such as: f5-openstack-agent==v9.1.0
+agent_pkg_location: f5-openstack-agent==9.1.0  # Ex: f5-openstack-agent==9.1.0 or git+https://github.com/F5Networks/f5-openstack-agent.git@mitaka
+
+# If using deb or rpm pacakges, here you must also provide locations of icontrol_rest and f5-sdk packages
+f5_icontrol_rest_python_pkg_location: <f5_icontrol_rest_python_pkg_location> # https://github.com/F5Networks/f5-icontrol-rest-python/releases/download/v1.0.9/f5-icontrol-rest-1.0.9-1.el7.noarch.rpm
+f5_sdk_rpm_pkg_location: <f5_sdk_pkg_location>                               # https://github.com/F5Networks/f5-common-python/releases/download/v1.5.0/f5-sdk-1.5.0-1.el7.noarch.rpm
+
+
+# The following variables are used for configuring the agent and driver
+f5_global_routed_mode: True
+bigip_netloc: 10.190.3.25
+agent_ini_file: /etc/neutron/services/f5/f5-openstack-agent.ini
+# Set advertised tunnel types, if needed
+advertised_tunnel_types: vxlan
+
+# The following var is set according to the CentOS service name
+# Modify to suit the service name on your deployment
+agent_service_name: f5-openstack-agent
+
+# Remote user
+remote_user: testlab  # User ansible will use to issue commands

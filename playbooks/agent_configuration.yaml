@@ -1,0 +1,11 @@
+---
+# version: 2016-12-29
+- hosts: all
+  vars_files:
+    - vars/agent_configuration_vars.yaml
+  become_user: root
+  become_method: sudo
+  become: true
+  remote_user: '{{ remote_user }}'
+  roles:
+    - role: configure_lbaasv2_agent

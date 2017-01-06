@@ -1,0 +1,12 @@
+---
+# version: 2016-12-29
+- hosts: all
+  vars_files:
+    - vars/heat_plugins_deploy_vars.yaml
+  become_user: root
+  become_method: sudo
+  become: true
+  remote_user: '{{ remote_user }}'
+  roles:
+    - role: install_f5_heat_plugins
+    - role: configure_f5_heat_plugins

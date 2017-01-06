@@ -1,0 +1,3 @@
+---
+neutron_conf_file: /etc/neutron/neutron.conf
+neutron_lbaas_conf_file: /etc/neutron/neutron_lbaas.conf

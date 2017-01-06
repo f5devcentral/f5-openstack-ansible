@@ -1,0 +1,48 @@
+# If using pip to install the agent or driver packages, set variable 'use_pip: true'
+# If using deb or rpm packages, set 'use_pip: false'
+use_pip: True
+
+
+# Provide the locations of the agent, driver, and neutron-lbaas packages to install
+#   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-agent.git@v9.1.0
+#         Or you can provide the PyPi package name and version, such as: f5-openstack-agent==v9.1.0
+agent_pkg_location: <pip_pkg_location>  # Ex: f5-openstack-agent==9.1.0 or git+https://github.com/F5Networks/f5-openstack-agent.git@mitaka
+driver_pkg_location: <pip_pkg_location> # Ex: f5-openstack-lbaasv2-driver or git+https://github.com/F5Networks/f5-openstack-lbaasv2-driver.git@mitaka
+
+
+# Links to the F5 Networks neutron-lbaas driver and __init__.py
+neutron_lbaas_driver_location: <driver_v2.py_file_location> # https://raw.githubusercontent.com/F5Networks/neutron-lbaas/v9.1.0/neutron_lbaas/drivers/f5/driver_v2.py
+neutron_lbaas_init_location: <__init__.py_file_location>    # https://raw.githubusercontent.com/F5Networks/neutron-lbaas/v9.1.0/neutron_lbaas/drivers/f5/__init__.py
+
+
+# If using deb or rpm pacakges, here you must also provide locations of icontrol_rest and f5-sdk packages
+f5_icontrol_rest_python_pkg_location: <f5_icontrol_rest_python_pkg_location> # https://github.com/F5Networks/f5-icontrol-rest-python/releases/download/v1.0.9/f5-icontrol-rest-1.0.9-1.el7.noarch.rpm
+f5_sdk_rpm_pkg_location: <f5_sdk_pkg_location>                               # https://github.com/F5Networks/f5-common-python/releases/download/v1.5.0/f5-sdk-1.5.0-1.el7.noarch.rpm
+
+
+# The following variables are used for configuring the agent and driver
+f5_global_routed_mode: <True_or_False>
+bigip_netloc: <bigip_ip_address_or_hostname>
+agent_ini_file: /etc/neutron/services/f5/f5-openstack-agent.ini
+neutron_lbaas_shim_install_dest: <neutron_lbaas_shim_install_dest> # Remote location for neutron lbaas shim /usr/lib/python2.7/site-packages/neutron_lbaas/drivers/f5
+# Set advertised tunnel types, if needed
+# advertised_tunnel_types: <tunnel_type>                           # vxlan, gre
+
+# Set to true only if the services below exist on the node this playbook is deployed
+restart_all_neutron_services: False
+
+# The following vars are set according to CentOS service names
+# Modify to suit the service names on your deployment
+neutron_server_service_name: neutron-server
+neutron_metadata_agent_service_name: neutron-metadata-agent
+neutron_dhcp_agent_service_name: neutron-dhcp-agent
+neutron_l3_agent_service_name: neutron-l3-agent
+neutron_openvswitch_agent_service_name: neutron-openvswitch-agent
+agent_service_name: f5-openstack-agent
+
+# Remote user
+remote_user: <remote_username>  # User ansible will use to issue commands
+
+# The following vars are set by default in the appropriate roles
+# neutron_conf_file: /etc/neutron/neutron.conf
+# neutron_lbaas_conf_file: /etc/neutron/neutron_lbaas.conf
