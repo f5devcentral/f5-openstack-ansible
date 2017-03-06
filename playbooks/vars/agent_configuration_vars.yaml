@@ -3,4 +3,5 @@ bigip_netloc: <bigip_ip_address_or_hostname>
 agent_ini_file: /etc/neutron/services/f5/f5-openstack-agent.ini
 f5_global_routed_mode: <True_or_False>     # Set to True or False
 advertised_tunnel_types: <tunnel_type>     # vxlan, gre etc...
+use_barbican_cert_manager: <True_or_False> # False by default. Set to True if using barbican for certs and keys
 remote_user: <remote_username>             # User ansible will use to issue commands
