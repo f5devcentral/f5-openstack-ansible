@@ -1,2 +1,2 @@
 ---
-undercloud: true
+use_barbican_cert_manager: False

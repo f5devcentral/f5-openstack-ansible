@@ -41,6 +41,14 @@
     option: icontrol_hostname
     value: '{{ bigip_netloc }}'
 
+- name: Configure F5 OpenStack LBaaSv2 Agent with Barbican as cert manager
+  ini_file:
+    dest: '{{ agent_ini_file }}'
+    section: DEFAULT
+    option: cert_manager
+    value: f5_openstack_agent.lbaasv2.drivers.bigip.barbican_cert.BarbicanCertManager
+  when: "{{ use_barbican_cert_manager }}"
+
 - name: Stop F5 OpenStack Agent in prep for restarting
   service:
     name: '{{ agent_service_name }}'
