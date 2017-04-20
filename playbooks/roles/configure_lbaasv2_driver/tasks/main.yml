@@ -1,4 +1,4 @@
-# version: 2016-12-20
+# version: 2017-04-20
 ---
 # Assume neutron-lbaas is installed in the stack already.
 # We will just drop the driver shim into the correct spot for neutron-lbaas to use.
@@ -9,9 +9,9 @@
     option: service_plugins
     value: neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2,router
 
-- name: Configure neutron-lbaas to recognize F5 LBaaSv2 Driver
+- name: Configure neutron service providers to recognize F5 LBaaSv2 Driver
   ini_file:
-    dest: '{{ neutron_lbaas_conf_file }}'
+    dest: '{{ neutron_conf_file }}'
     section: service_providers
     option: service_provider
     value: 'LOADBALANCERV2:F5Networks:neutron_lbaas.drivers.f5.driver_v2.F5LBaaSV2Driver:default'

@@ -1,4 +1,4 @@
-# version: 2016-12-20
+# version: 2017-04-20
 ---
 - name: Create f5 directory in neutron-lbaas install location, if necessary
   file:
@@ -15,21 +15,15 @@
     url: '{{ neutron_lbaas_init_location }}'
     dest: '{{ neutron_lbaas_shim_install_dest }}'
 
-- name: Install the LBaaSv2 Driver from an rpm package
+- name: Install the LBaaSv2 Driver from an rpm or deb package
   package:
     name: '{{ driver_pkg_location }}'
     state: present
-  when: 'not {{ use_pip }}'
-
-- name: Install the LBaaSv2 Driver from an rpm package
-  package:
-    name: '{{ driver_pkg_location }}'
-    state: present
-  when: 'not {{ use_pip }}'
+  when: not use_pip
 
 - name: Install the F5 OpenStack LBaaSv2 Driver
   pip:
     name: '{{ driver_pkg_location }}'
     editable: false
     extra_args: --upgrade
-  when: '{{ use_pip }}'
+  when: use_pip

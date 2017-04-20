@@ -18,25 +18,25 @@
       service:
         name: '{{ neutron_metadata_agent_service_name }}'
         state: restarted
-      when: '{{ restart_all_neutron_services }}'
+      when: restart_all_neutron_services
 
     - name: Restart neutron-dhcp-agent
       service:
         name: '{{ neutron_dhcp_agent_service_name }}'
         state: restarted
-      when: '{{ restart_all_neutron_services }}'
+      when: restart_all_neutron_services
 
     - name: Restart neutron-l3-agent
       service:
         name: '{{ neutron_l3_agent_service_name }}'
         state: restarted
-      when: '{{ restart_all_neutron_services }}'
+      when: restart_all_neutron_services
 
     - name: Restart neutron-openvswitch-agent
       service:
         name: '{{ neutron_openvswitch_agent_service_name }}'
         state: restarted
-      when: '{{ restart_all_neutron_services }}'
+      when: restart_all_neutron_services
 
     - name: Restart Neutron
       service:
