@@ -4,23 +4,23 @@
   package:
     name: '{{ f5_icontrol_rest_python_pkg_location }}'
     state: present
-  when: 'not {{ use_pip }}'
+  when: not use_pip|bool
 
 - name: Install the f5-sdk from rpm or deb package
   package:
     name: '{{ f5_sdk_rpm_pkg_location }}'
     state: present
-  when: 'not {{ use_pip }}'
+  when: not use_pip|bool
 
 - name: Install the F5 OpenStack LBaaSv2 Agent from rpm or deb package
   package:
     name: '{{ agent_pkg_location }}'
     state: present
-  when: 'not {{ use_pip }}'
+  when: not use_pip|bool
 
 - name: Install the F5 OpenStack LBaaSv2 Agent
   pip:
     name: '{{ agent_pkg_location }}'
     editable: false
     extra_args: --upgrade
-  when: '{{ use_pip }}'
+  when: use_pip|bool
