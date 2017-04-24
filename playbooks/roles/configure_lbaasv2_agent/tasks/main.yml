@@ -9,7 +9,7 @@
     section: DEFAULT
     option: l3_binding_driver
     value: f5_openstack_agent.lbaasv2.drivers.bigip.l3_binding.AllowedAddressPairs
-  when: not {{ f5_global_routed_mode }}
+  when: not f5_global_routed_mode|bool
 
 - name: Configure F5 OpenStack LBaaSv2 Agent to set Global Routed Mode for undercloud or overcloud deployments
   ini_file:
@@ -24,7 +24,7 @@
     section: DEFAULT
     option: f5_vtep_selfip_name
     value: selfip.client
-  when: not {{ f5_global_routed_mode }}
+  when: not f5_global_routed_mode|bool
 
 - name: Configure F5 OpenStack LBaaSv2 Agent set advertised tunnel types for undercloud
   ini_file:
@@ -32,7 +32,7 @@
     section: DEFAULT
     option: advertised_tunnel_types
     value: '{{ advertised_tunnel_types }}'
-  when: not {{ f5_global_routed_mode }}
+  when: not f5_global_routed_mode|bool
 
 - name: Configure F5 OpenStack LBaaSv2 Agent with icontrol_hostname
   ini_file:
@@ -40,6 +40,14 @@
     section: DEFAULT
     option: icontrol_hostname
     value: '{{ bigip_netloc }}'
+
+- name: Configure F5 OpenStack LBaaSv2 Agent with Barbican as cert manager
+  ini_file:
+    dest: '{{ agent_ini_file }}'
+    section: DEFAULT
+    option: cert_manager
+    value: f5_openstack_agent.lbaasv2.drivers.bigip.barbican_cert.BarbicanCertManager
+  when: use_barbican_cert_manager|bool
 
 - name: Stop F5 OpenStack Agent in prep for restarting
   service:
