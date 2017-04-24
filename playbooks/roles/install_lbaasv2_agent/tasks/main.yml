@@ -1,4 +1,4 @@
-# version: 2016-12-20
+# version: 2017-04-20
 ---
 - name: Install the icontrol-rest-python from rpm or deb package
   package:

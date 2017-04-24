@@ -1,4 +1,4 @@
-# version: 2016-12-20
+# version: 2017-04-20
 # The agent configuration file contains many settings to customize your agent.
 # This configures the most common settings. If anything additional is needed,
 # add the setting using the ini_file module.
