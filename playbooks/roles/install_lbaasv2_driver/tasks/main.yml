@@ -21,13 +21,7 @@
     state: present
   when: not use_pip|bool
 
-- name: Install the LBaaSv2 Driver from an rpm package
-  package:
-    name: '{{ driver_pkg_location }}'
-    state: present
-  when: not use_pip|bool
-
-- name: Install the F5 OpenStack LBaaSv2 Driver
+- name: Install the F5 OpenStack LBaaSv2 Driver with pip
   pip:
     name: '{{ driver_pkg_location }}'
     editable: false
