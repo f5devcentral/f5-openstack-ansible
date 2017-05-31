@@ -4,14 +4,14 @@ use_pip: True
 
 
 # Provide the location of the driver and neutron-lbaas packages to install
-#   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-lbaasv2-driver.git@v9.1.0
-#         Or you can provide the PyPi package name and version, such as: f5-openstack-lbaasv2-driver==v9.1.0
-driver_pkg_location: f5-openstack-lbaasv2-driver==9.1.0 # Ex: f5-openstack-lbaasv2-driver or git+https://github.com/F5Networks/f5-openstack-lbaasv2-driver.git@mitaka
+#   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-lbaasv2-driver.git@v8.3.0
+#         Or you can provide the PyPi package name and version, such as: f5-openstack-lbaasv2-driver==v8.3.0
+driver_pkg_location: f5-openstack-lbaasv2-driver==8.3.0 # Ex: f5-openstack-lbaasv2-driver or git+https://github.com/F5Networks/f5-openstack-lbaasv2-driver.git@liberty
 
 
 # Links to the F5 Networks neutron-lbaas driver and __init__.py
-neutron_lbaas_driver_location: https://raw.githubusercontent.com/F5Networks/neutron-lbaas/v9.1.0/neutron_lbaas/drivers/f5/driver_v2.py
-neutron_lbaas_init_location: https://raw.githubusercontent.com/F5Networks/neutron-lbaas/v9.1.0/neutron_lbaas/drivers/f5/__init__.py
+neutron_lbaas_driver_location: https://raw.githubusercontent.com/F5Networks/neutron-lbaas/v8.0.1/neutron_lbaas/drivers/f5/driver_v2.py
+neutron_lbaas_init_location: https://raw.githubusercontent.com/F5Networks/neutron-lbaas/v8.0.1/neutron_lbaas/drivers/f5/__init__.py
 
 # The following variables are used for configuring the driver
 neutron_lbaas_shim_install_dest: /usr/lib/python2.7/site-packages/neutron_lbaas/drivers/f5
