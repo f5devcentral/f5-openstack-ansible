@@ -23,7 +23,7 @@
 
 - name: Install git
   package:
-    name:  git-1.8.3.1-6.el7_2.1
+    name:  '{{ versioned_git_yum_package }}'
     state: present
 
 - name: Install the F5 OpenStack LBaaSv2 Driver with pip
