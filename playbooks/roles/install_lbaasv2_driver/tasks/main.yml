@@ -21,6 +21,11 @@
     state: present
   when: not use_pip|bool
 
+- name: Install git
+  package:
+    name:  '{{ versioned_git_yum_package }}'
+    state: present
+
 - name: Install the F5 OpenStack LBaaSv2 Driver with pip
   pip:
     name: '{{ driver_pkg_location }}'
