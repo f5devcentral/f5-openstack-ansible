@@ -74,4 +74,4 @@
     dest: '{{ agent_ini_file }}'
     section: DEFAULT
     option: f5_ha_type
-    value: '{{ ha_type | default('standalone') }}'
+    value: '{{ ha_type | default("standalone") }}'
