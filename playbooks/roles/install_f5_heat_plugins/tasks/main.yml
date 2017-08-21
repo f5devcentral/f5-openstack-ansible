@@ -1,7 +1,14 @@
 # version: 2016-12-27
 ---
-- name: Install the F5 Heat Plugins
+- name: Install the F5 Heat Plugins with pip
+  pip:
+    name: '{{ heat_plugins_pkg_location }}'
+    editable: false
+  when: not pip_upgrade|bool
+
+- name: Upgrade the F5 Heat Plugins with pip
   pip:
     name: '{{ heat_plugins_pkg_location }}'
     editable: false
     extra_args: --upgrade
+  when: pip_upgrade|bool
