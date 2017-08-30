@@ -29,6 +29,12 @@ neutron_lbaas_shim_install_dest: <neutron_lbaas_shim_install_dest> # Remote loca
 # Set advertised tunnel types, if needed
 # advertised_tunnel_types: <tunnel_type>                           # vxlan, gre
 
+# Set f5_ha_type if needed. Defaults to standalone, but can be one of the following:
+#   standalone - single device no HA
+#   pair - active/standby two device HA
+#   scalen - active device cluster
+# f5_ha_type: <standalone | pair | scalen>
+
 # Set to true only if the services below exist on the node this playbook is deployed
 restart_all_neutron_services: False
 
