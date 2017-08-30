@@ -20,6 +20,12 @@ agent_ini_file: /etc/neutron/services/f5/f5-openstack-agent.ini
 # Set advertised tunnel types, if needed
 advertised_tunnel_types: vxlan
 
+# Set f5_ha_type if needed. Defaults to standalone, but can be one of the following:
+#   standalone - single device no HA
+#   pair - active/standby two device HA
+#   scalen - active device cluster
+# f5_ha_type: <standalone | pair | scalen>
+
 # The following var is set according to the CentOS service name
 # Modify to suit the service name on your deployment
 agent_service_name: f5-openstack-agent
