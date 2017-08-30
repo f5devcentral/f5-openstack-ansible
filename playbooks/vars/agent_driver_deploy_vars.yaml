@@ -4,6 +4,9 @@ use_pip: True
 # Optionally perform a pip upgrade
 # pip_upgrade: True
 
+# Install git on the node that will have the driver installed on it.
+git_package: git
+
 # Provide the locations of the agent, driver, and neutron-lbaas packages to install
 #   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-agent.git@v9.3.0
 #         Or you can provide the PyPi package name and version, such as: f5-openstack-agent==v9.3.0

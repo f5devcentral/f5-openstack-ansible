@@ -3,6 +3,10 @@
 use_pip: True
 
 
+# Provide git early on:
+
+git_package: git
+
 # Provide the location of the driver and neutron-lbaas packages to install
 #   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-lbaasv2-driver.git@v9.3.0
 #         Or you can provide the PyPi package name and version, such as: f5-openstack-lbaasv2-driver==v9.3.0
