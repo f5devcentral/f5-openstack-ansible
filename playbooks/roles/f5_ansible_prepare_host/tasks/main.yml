@@ -1,0 +1,7 @@
+# version: 2017-08-31
+---
+- name: Install git.
+  package:
+      name: '{{ git_package }}'
+      state: present
+  when: use_pip|bool

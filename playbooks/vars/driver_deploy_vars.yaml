@@ -2,9 +2,7 @@
 # If using deb or rpm packages, set 'use_pip: false'
 use_pip: True
 
-
-# Provide git early on:
-
+# Prerequisite for the pip install
 git_package: git
 
 # Provide the location of the driver and neutron-lbaas packages to install

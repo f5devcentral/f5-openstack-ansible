@@ -4,7 +4,7 @@ use_pip: True
 # Optionally perform a pip upgrade
 # pip_upgrade: True
 
-# Install git on the node that will have the driver installed on it.
+# Prerequisite for the pip install
 git_package: git
 
 # Provide the locations of the agent, driver, and neutron-lbaas packages to install
