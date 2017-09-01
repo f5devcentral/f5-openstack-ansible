@@ -1,10 +1,5 @@
 # version: 2017-04-20
 ---
-- name: Install git on the node that the driver will be installed on.
-  package:
-      name: '{{ git_package }}'
-      state: present
-
 - name: Create f5 directory in neutron-lbaas install location, if necessary
   file:
     path: '{{ neutron_lbaas_shim_install_dest }}'

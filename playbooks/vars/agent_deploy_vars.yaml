@@ -2,6 +2,8 @@
 # If using deb or rpm packages, set 'use_pip: false'
 use_pip: True
 
+# Prerequisite for the pip install
+git_package: git
 
 # Provide the locations of the agent packages to install
 #   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-agent.git@v9.3.0
