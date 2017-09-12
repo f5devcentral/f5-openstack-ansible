@@ -2,6 +2,8 @@
 # If using deb or rpm packages, set 'use_pip: false'
 use_pip: True
 
+# Prerequisite for the pip install
+git_package: git
 
 # Provide the locations of the agent packages to install
 #   Note: If using pip, you can provide a link such as: git+https://github.com/F5Networks/f5-openstack-agent.git@v9.3.0
@@ -19,6 +21,12 @@ bigip_netloc: 10.190.3.25
 agent_ini_file: /etc/neutron/services/f5/f5-openstack-agent.ini
 # Set advertised tunnel types, if needed
 advertised_tunnel_types: vxlan
+
+# Set f5_ha_type if needed. Defaults to standalone, but can be one of the following:
+#   standalone - single device no HA
+#   pair - active/standby two device HA
+#   scalen - active device cluster
+# f5_ha_type: <standalone | pair | scalen>
 
 # The following var is set according to the CentOS service name
 # Modify to suit the service name on your deployment

@@ -1,6 +1,12 @@
 # Enter remote user
 remote_user: <remote_username>  # User ansible will use to issue commands
 
+# Pip is currently the only way to install the heat plugins
+use_pip: True
+
+# Prerequisite for the pip install
+git_package: git
+
 # Enter the location for the plugins package
 heat_plugins_pkg_location: <f5_heat_plugins_pkg_location> # Ex: git+https://github.com/F5Networks/f5-openstack-heat-plugins.git@mitaka
 
