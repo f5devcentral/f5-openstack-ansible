@@ -1,0 +1,11 @@
+---
+# version: 2017-09-20
+- hosts: all
+  vars_files:
+    - vars/ml2_driver_deploy_vars.yaml
+  become_user: root
+  become_method: sudo
+  become: true
+  remote_user: '{{ remote_user }}'
+  roles:
+    - role: install_f5_ml2_driver
