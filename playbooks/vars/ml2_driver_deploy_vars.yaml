@@ -1,0 +1,12 @@
+# Install F5 OpenStack ML2 Mechanism Driver using pip and restart neutron server
+remote_user: <remote_username> # User ansible will use to issue commands
+
+f5_ml2_driver_pkg_location: git+https://github.com/F5Networks/f5-openstack-ml2-driver.git@stable/mitaka
+neutron_server_service_name:  neutron-server
+
+# This is the specific location of the entrypoints file on the remote server. It is dependent upon
+# the OS and the neutron version you are using, as well as the Python version.
+neutron_entrypoint_file: /usr/lib/python2.7/site-packages/neutron-8.3.0-py2.7.egg-info/entry_points.txt
+
+# The following vars are set by default in the role
+ml2_conf_file: /etc/neutron/plugins/ml2/ml2_conf.ini
