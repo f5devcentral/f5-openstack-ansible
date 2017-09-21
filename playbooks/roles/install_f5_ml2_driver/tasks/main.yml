@@ -1,0 +1,25 @@
+# version: 2017-09-20
+---
+- name: Install the F5 OpenStack ML2 Mechanism Driver with pip
+  pip:
+    name: '{{ f5_ml2_driver_pkg_location }}'
+    editable: false
+
+- name: Configure Neutron to load F5 OpenStack ML2 Mechanism Driver
+  ini_file:
+    dest: '{{ neutron_entrypoint_file }}'
+    section: neutron.ml2.mechanism_drivers
+    option: f5ml2
+    value: networking_f5.plugins.ml2.drivers.f5.mech_f5networks_bigip:F5NetworksMechanismDriver
+
+- name: Configure ML2 plugin to use F5 OpenStack ML2 Mechanism Driver
+  ini_file:
+    dest: '{{ ml2_conf_file }}'
+    section: ml2
+    option: mechanism_drivers
+    value: openvswitch,f5ml2
+
+- name: Restart Neutron
+  service:
+    name: '{{ neutron_server_service_name }}'
+    state: restarted
