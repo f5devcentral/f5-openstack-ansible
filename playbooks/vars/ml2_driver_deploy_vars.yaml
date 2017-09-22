@@ -6,7 +6,7 @@ neutron_server_service_name:  neutron-server
 
 # This is the specific location of the entrypoints file on the remote server. It is dependent upon
 # the OS and the neutron version you are using, as well as the Python version.
-neutron_entrypoint_file: /usr/lib/python2.7/site-packages/neutron-8.3.0-py2.7.egg-info/entry_points.txt
+neutron_entrypoint_file: /usr/lib/python2.7/site-packages/neutron-9.2.0-py2.7.egg-info/entry_points.txt
 
 # The following vars are set by default in the role
 ml2_conf_file: /etc/neutron/plugins/ml2/ml2_conf.ini
